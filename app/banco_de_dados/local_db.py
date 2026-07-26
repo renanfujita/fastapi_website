@@ -19,16 +19,16 @@ class BancoDeDadosLocal():
             conexao.close()
 
 
-def inicializar_banco(self):
-    with self.conectar() as conexao: 
-        cursor = conexao.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS clientes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            email TEXT NOT NULL,
-            telefone TEXT NOT NULL
-        )
-    ''')
-    #### conexao.commit()
-    print("Banco de Dados Inicializado!")
+    def inicializar_banco(self):
+        with self.conectar() as conexao: 
+            cursor = conexao.cursor()
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS clientes (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    telefone TEXT NOT NULL
+            )
+        ''')
+        #### conexao.commit()
+        print("Banco de Dados Inicializado!")

@@ -1,8 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from app import modelos
 from app.modelos.clientes import Cliente
+from typing import Annotated
+from app.banco_de_dados.cliente_repositorio import ClienteRepositorio
+from app.dependencias import obter_cliente_repositorio
 
 router = APIRouter(
+
     prefix="/clientes"
 )
 
@@ -12,16 +16,18 @@ CLIENT_LIST = [Cliente(id_=1, nome="Rafael", email ="rafael@htormail.com", telef
   
 
 @router.get("/", response_model=list[Cliente])
-async def listar_clientes():
-        return CLIENT_LIST
+async def listar_clientes(clientes_repositorio: Annotated[ClienteRepositorio, Depends(obter_cliente_repositorio)]):
+        return await clientes_repositorio.listar_clientes()
 
    
-
-
 @router.get("/{cliente_id}", response_model=Cliente | None)
-async def obter_cliente(cliente_id: int):
-        for cliente in CLIENT_LIST:
-                if cliente.id_ == cliente_id:
-                        return cliente
+async def obter_cliente(
+        clientes_repositorio: Annotated[ClienteRepositorio, Depends(obter_cliente_repositorio)],
+        cliente_id: int
+):
+        cliente = await clientes_repositorio.obter_cliente(cliente_id)
 
-        return None
+        if not cliente:
+                raise HTTPException(status_code=404, detail="Cliente não encontrado!")
+                  
+        return cliente
