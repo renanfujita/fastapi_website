@@ -1,0 +1,36 @@
+GET http://localhost:8000/clientes/1
+
+###
+
+
+GET http://localhost:8000/clientes/2
+
+###
+
+POST http://localhost:8000/clientes
+Content-Type: application/json
+
+{
+    "nome": "Renan",
+    "email": "renanfz@hotmail.com",
+    "telefone":"1121212"
+}
+
+###
+PUT http://localhost:8000/clientes/1
+Content-Type: application/json
+
+{
+    "nome":"Renan Yuki",
+    "email":"renanfz@hotmail.com",
+    "telefone": "1121212"
+}
+
+
+###
+
+DELETE http://localhost:8000/clientes/2
+
+
+DROP TABLE clientes
+

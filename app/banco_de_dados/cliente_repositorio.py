@@ -1,5 +1,5 @@
 from app.banco_de_dados.local_db import BancoDeDadosLocal
-from app.modelos.clientes import Cliente
+from app.modelos.clientes import Cliente, ClienteCriarAtualizar
 
 ### criando o repositorio para receber o DB 
 class ClienteRepositorio:
@@ -25,6 +25,48 @@ class ClienteRepositorio:
             )
             linha = cursor.fetchone()
             if linha:
-                return Cliente(id_=linha[0], nome=linha[1], email=linha[2], telefone=[3])
+                return Cliente(id_=linha[0], nome=linha[1], email=linha[2], telefone=linha[3])
             return None
+
+
+    async def criar_cliente(self, cliente: ClienteCriarAtualizar) -> Cliente:
+        with self.db.conectar() as conexao:
+            cursor = conexao.cursor()
+            cursor.execute(
+                "INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?)",
+                (cliente.nome, cliente.email, cliente.telefone)
+            )
+            conexao.commit()  # Confirma e salva a inserção no banco
+            
+            cliente_id = cursor.lastrowid
+            
+            return Cliente(
+                id_=cliente_id, 
+                nome=cliente.nome, 
+                email=cliente.email, 
+                telefone=cliente.telefone
+            )
+    
+
+    async def atualizar_cliente(self, cliente_id: int, cliente: ClienteCriarAtualizar)  -> Cliente: 
+        with self.db.conectar() as conexao: 
+            cursor = conexao.cursor()
+            cursor.execute(
+                "UPDATE clientes SET nome = ?, email = ?, telefone = ? where id = ?",
+                (cliente.nome, cliente.email, cliente.telefone, cliente_id)
+            )
+            conexao.commit()
+            if cursor.rowcount == 0: 
+                return None
+            return Cliente(id_=cliente_id, nome=cliente.nome, email=cliente.email, telefone=cliente.telefone)
+
+    async def deletar_cliente(self, cliente_id: int) -> bool: 
+        with self.db.conectar() as conexao: 
+            cursor = conexao.cursor()
+            cursor.execute(
+                "DELETE FROM clientes where id = ?", (cliente_id,)
+            )
+            conexao.commit()
+            return cursor.rowcount > 0 
+        
     
