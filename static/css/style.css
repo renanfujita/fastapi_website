@@ -1,0 +1,217 @@
+/* ==================== PALETA FUTURISTA (DARK NEUTRAL + CYAN) ==================== */
+:root {
+    --bg-dark: #0b0f19;
+    --surface-dark: #111827;
+    --surface-card: rgba(255, 255, 255, 0.03);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    
+    /* Cores de Destaque Harmônicas */
+    --accent-cyan: #00f0ff;
+    --accent-cyan-glow: rgba(0, 240, 255, 0.25);
+    --accent-purple: #8b5cf6;
+    --accent-emerald: #10b981;
+    
+    /* Tipografia e Leitura */
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --border-radius-lg: 16px;
+    --border-radius-sm: 8px;
+    --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== ESTRUTURA GLOBAL ==================== */
+body.tech-bg {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Acessibilidade: Foco Teclado Visível */
+a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent-cyan) !important;
+    outline-offset: 3px;
+}
+
+/* ==================== GLASSMORPHISM & NAVBAR ==================== */
+.glass-nav {
+    background: rgba(11, 15, 25, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.glass-footer {
+    background: rgba(11, 15, 25, 0.9);
+    border-top: 1px solid var(--border-glass);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-cyan { color: var(--accent-cyan) !important; }
+
+/* ==================== COMPONENTES FUTURISTAS ==================== */
+
+/* Hero Banner Tecnológico */
+.hero-tech-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius-lg);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), transparent);
+}
+
+/* Cards Interativos */
+.glass-card {
+    background: var(--surface-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-fast);
+}
+
+.glass-card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-cyan-glow);
+}
+
+/* Badge Neon Ativo */
+.badge-status-online {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-emerald);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-emerald);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Ícones Cyber */
+.icon-box-tech {
+    width: 54px;
+    height: 54px;
+    border-radius: var(--border-radius-sm);
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Botões Tecnológicos */
+.btn-cyan {
+    background: var(--accent-cyan);
+    color: #000000 !important;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 10px 22px;
+    transition: var(--transition-fast);
+}
+
+.btn-cyan:hover {
+    background: #33f3ff;
+    box-shadow: 0 0 20px var(--accent-cyan-glow);
+    transform: translateY(-1px);
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius-sm);
+    padding: 10px 22px;
+    transition: var(--transition-fast);
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-sm-custom {
+    padding: 6px 16px;
+    font-size: 0.875rem;
+}
+
+/* Widget de Terminal / Log de Sistema */
+.terminal-widget {
+    background: #060911;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius-sm);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+}
+
+.terminal-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+/* Links de Navegação */
+.nav-tech-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    border-radius: var(--border-radius-sm);
+    padding: 8px 16px !important;
+    transition: var(--transition-fast);
+}
+
+.nav-tech-link:hover, .nav-tech-link.active {
+    color: var(--accent-cyan) !important;
+    background: rgba(0, 240, 255, 0.05);
+}

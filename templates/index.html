@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block titulo %}Dashboard - {{ super() }}{% endblock %}
+
+{% block conteudo %}
+<section aria-labelledby="welcome-heading">
+    <!-- Hero Banner Futurista -->
+    <div class="hero-tech-card p-4 p-md-5 mb-5">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge-status-online">
+                        <span class="pulse-dot" aria-hidden="true"></span>
+                        SISTEMA OPERACIONAL ATIVO
+                    </span>
+                    <span class="text-muted small">| Node: LATAM-BR-01</span>
+                </div>
+                <h1 id="welcome-heading" class="display-5 fw-bold text-gradient mb-3">
+                    RF Technology CRM
+                </h1>
+                <p class="lead text-secondary mb-4 col-lg-10">
+                    Plataforma centralizada para gestão inteligente de clientes, integração de dados e análise preditiva.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="/clientes" class="btn btn-cyan d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-people-fill" aria-hidden="true"></i> Gerenciar Clientes
+                    </a>
+                    <a href="/docs" target="_blank" rel="noopener" class="btn btn-glass d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-terminal-fill text-cyan" aria-hidden="true"></i> Documentação Swagger
+                    </a>
+                </div>
+            </div>
+
+            <!-- KPI Card Lateral / Status da Versão -->
+            <div class="col-lg-4">
+                <div class="glass-card p-4 text-center">
+                    <div class="icon-box-tech mx-auto mb-3">
+                        <i class="bi bi-shield-check" aria-hidden="true"></i>
+                    </div>
+                    <span class="text-secondary small text-uppercase tracking-wider">Versão do Sistema</span>
+                    <div class="display-6 fw-bold text-white my-1">{{ versao }}</div>
+                    <p class="text-muted small mb-0">Build compilada em ambiente seguro</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Ações Rápidas & Funcionalidades -->
+<section aria-label="Módulos e Recursos">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="h4 fw-bold text-white mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-grid-1x2-fill text-cyan" aria-hidden="true"></i> Módulos Principais
+        </h2>
+        <span class="text-muted small">Acesso Rápido</span>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <!-- Card 1: Gestão de Clientes -->
+        <div class="col-md-6 col-lg-4">
+            <article class="glass-card glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="icon-box-tech">
+                            <i class="bi bi-person-lines-fill" aria-hidden="true"></i>
+                        </div>
+                        <span class="badge bg-dark border border-secondary text-secondary">Módulo Core</span>
+                    </div>
+                    <h3 class="h5 text-white fw-semibold mb-2">Base de Clientes</h3>
+                    <p class="text-secondary small mb-4">
+                        Consulte, edite, cadastre e remova registros de clientes da empresa com sincronização direta no banco SQLite.
+                    </p>
+                </div>
+                <a href="/clientes" class="btn btn-glass btn-sm w-100 d-flex align-items-center justify-content-between" aria-label="Acessar listagem de clientes">
+                    <span>Acessar Painel</span>
+                    <i class="bi bi-arrow-right text-cyan" aria-hidden="true"></i>
+                </a>
+            </article>
+        </div>
+
+        <!-- Card 2: Documentação API -->
+        <div class="col-md-6 col-lg-4">
+            <article class="glass-card glass-card-hover p-4 h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="icon-box-tech" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple); border-color: rgba(139, 92, 246, 0.3);">
+                            <i class="bi bi-journal-code" aria-hidden="true"></i>
+                        </div>
+                        <span class="badge bg-dark border border-secondary text-secondary">OpenAPI 3.0</span>
+                    </div>
+                    <h3 class="h5 text-white fw-semibold mb-2">REST API Docs</h3>
+                    <p class="text-secondary small mb-4">
+                        Explore os endpoints do FastAPI via Swagger UI. Teste requisições GET, POST, PUT e DELETE de forma interativa.
+                    </p>
+                </div>
+                <a href="/docs" target="_blank" rel="noopener" class="btn btn-glass btn-sm w-100 d-flex align-items-center justify-content-between" aria-label="Abrir documentação da API em nova aba">
+                    <span>Abrir Swagger</span>
+                    <i class="bi bi-box-arrow-up-right text-cyan" aria-hidden="true"></i>
+                </a>
+            </article>
+        </div>
+
+        <!-- Card 3: Terminal de Integridade do Banco -->
+        <div class="col-md-12 col-lg-4">
+            <article class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="icon-box-tech" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.3);">
+                            <i class="bi bi-database-check" aria-hidden="true"></i>
+                        </div>
+                        <span class="badge bg-dark border border-secondary text-secondary">SQLite3</span>
+                    </div>
+                    <h3 class="h5 text-white fw-semibold mb-2">Status da Camada de Dados</h3>
+                    <p class="text-secondary small mb-3">
+                        Repositório assíncrono operacional com suporte a transações ACID ativas.
+                    </p>
+                    
+                    <!-- Simulação de Terminal Futurista -->
+                    <div class="terminal-widget p-3 mb-3">
+                        <div class="terminal-header mb-2">
+                            <span class="terminal-dot dot-red"></span>
+                            <span class="terminal-dot dot-yellow"></span>
+                            <span class="terminal-dot dot-green"></span>
+                            <span class="text-muted ms-2" style="font-size: 0.7rem;">local_db.py</span>
+                        </div>
+                        <div class="text-success">&gt; Database linked: OK</div>
+                        <div class="text-muted">&gt; Async Repository: Ready</div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -11,7 +11,7 @@ class BancoDeDadosLocal():
         conexao = sqlite3.connect (self.nome_arquivo)
         try:
             yield conexao
-            conexao.commit
+            conexao.commit()
         except Exception as e:
             conexao.rollback()
             raise e
@@ -30,5 +30,13 @@ class BancoDeDadosLocal():
                     telefone TEXT NOT NULL
             )
         ''')
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS usuarios (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    senha TEXT NOT NULL
+                )
+            ''')
         #### conexao.commit()
         print("Banco de Dados Inicializado!")

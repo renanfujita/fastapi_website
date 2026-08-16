@@ -32,5 +32,3 @@ Content-Type: application/json
 DELETE http://localhost:8000/clientes/2
 
 
-DROP TABLE clientes
-
