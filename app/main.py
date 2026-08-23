@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from app.rotas import clientes, login, registro
 from fastapi.requests import Request
 from app.rotas.clientes import front_router
+from app.autenticacao_middleware import AuthenticationToken
 
 templates = Jinja2Templates(directory="templates")
 
@@ -15,11 +16,14 @@ app = FastAPI(
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.add_middleware(AuthenticationToken)
+
 app.include_router(clientes.router)
 app.include_router(clientes.front_router)
 
 app.include_router(login.router)
 app.include_router(registro.router)
+
 
 @app.get ("/health")
 async def health_check():
@@ -33,5 +37,3 @@ async def front_page(request: Request): # 1. Recebe a instância 'request' aqui
         context={"título": "RF Technology CRM", "versao": "1.0.0"} # 4. Dicionário de dados
     )
 
-
-       

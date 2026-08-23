@@ -1,3 +1,2 @@
 uvicorn app.main:app --reload
 
-python reset_db.py
